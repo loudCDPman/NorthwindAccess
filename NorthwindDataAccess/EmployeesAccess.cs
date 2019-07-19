@@ -35,13 +35,10 @@ namespace Northwind.DataAccess
             {
                 using (NorthwindContext DB = new NorthwindContext())
                 {
-                    Mapper.Initialize(cfg => cfg.CreateMap<EmployeesDTO, Territories>());
-                    var model = Mapper.Map<Territories>(DTO);
-
                     MapperService mapper = new MapperService(ConfigBuilder.GetConfiguration());
+                    var item = mapper.Map<EmployeesDTO, Employees>(DTO);
 
-
-                    DB.Add(model);
+                    DB.Add(item);
                     DB.SaveChanges();
                     return true;
                 }
