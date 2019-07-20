@@ -37,7 +37,6 @@ namespace Northwind.DataAccess
                 {
                     MapperService mapper = new MapperService(ConfigBuilder.GetConfiguration());
                     var item = mapper.Map<EmployeesDTO, Employees>(DTO);
-
                     DB.Add(item);
                     DB.SaveChanges();
                     return true;
@@ -54,9 +53,9 @@ namespace Northwind.DataAccess
             {
                 using (NorthwindContext DB = new NorthwindContext())
                 {
-                    Mapper.Initialize(cfg => cfg.CreateMap<EmployeesDTO, Territories>());
-                    var model = Mapper.Map<Territories>(DTO);
-                    DB.Remove(model);
+                    MapperService mapper = new MapperService(ConfigBuilder.GetConfiguration());
+                    var item = mapper.Map<EmployeesDTO, Employees>(DTO);
+                    DB.Remove(item);
                     DB.SaveChanges();
                     return true;
                 }
@@ -74,8 +73,9 @@ namespace Northwind.DataAccess
                 using (NorthwindContext DB = new NorthwindContext())
                 {
                     //TODO fix
-                    Mapper.Initialize(cfg => cfg.CreateMap<EmployeesDTO, Territories>());
-                    var model = Mapper.Map<Territories>(DTO);
+                    MapperService mapper = new MapperService(ConfigBuilder.GetConfiguration());
+                    var model = mapper.Map<EmployeesDTO, Employees>(DTO);
+
                     var item = DB.Employees.Where(b => b.EmployeeId == DTO.EmployeeId);
                     if (item != null)
                     {
