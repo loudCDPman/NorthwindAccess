@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Northwind.DataAccess.Models;
 
-namespace Northwind.DataAccess.Models
+namespace Northwind.DataAccess
 {
     public partial class NorthwindContext : DbContext
     {
